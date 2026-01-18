@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import News from './components/NEWS'
+import News from './components/News'
 
 function App() {
   // useState宣言
@@ -17,17 +17,17 @@ function App() {
     setEmail(e.target.value)
   }
 
-  
+
   useEffect(() => {
     console.log("起動した！")
-  },[])
-  
+  }, [])
+
   console.log("順番の確認")
 
   return (
     <>
       {/*  */}
-      <News/>
+      <News />
       <div>
         <p>名前が入ります</p>
         <input type="text" placeholder='名前を入力してください' value={name} onChange={handleNameChange} />
