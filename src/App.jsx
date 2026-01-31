@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/home";
@@ -9,58 +8,37 @@ import NotFound from "./pages/notfound";
 
 import './App.css'
 
+import { useForm } from "./hooks/useForm"
+
 function App() {
-  // useState宣言
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [data, setData] = useState([]);
-
-  // イベント処理
-  const handleNameChange = (e) => {
-    setName(e.target.value)
-  }
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value)
-  }
-
-
-  useEffect(() => {
-    console.log("起動した！")
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/todos")
-        console.log(response, "response");
-        const data = await response.json()
-        console.log(data, "中身");
-        setData(data)
-      } catch (error) {
-
-      }
-    }
-    fetchData()
-  }, [])
-
-  console.log("順番の確認")
+  const {
+    handleNameChange,
+    handleEmailChange,
+    name,
+    email,
+    data,
+  } = useForm()
 
   return (
     <>
       {/*  */}
-      {data.map((i) => (
-        <div>
-          <p>{i.id}</p>
-          <p>{i.title}</p>
-          <p>{i.userId}</p>
+      {/* {data.map((item, index) => (
+        <div key={index}>
+          <p>{item.id}</p>
+          <p>{item.title}</p>
+          <p>{item.userId}</p>
         </div>
-      ))}
-      <div>
+      ))} */}
+
+      {/* <div>
         <p>名前が入ります</p>
         <input type="text" placeholder='名前を入力してください' value={name} onChange={handleNameChange} />
       </div>
       <div>
         <p>メールアドレスが入ります</p>
         <input type="text" placeholder='メールアドレスを入力してください' value={email} onChange={handleEmailChange} />
-      </div>
+      </div> */}
+
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
